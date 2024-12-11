@@ -1,8 +1,29 @@
 syntax = "proto3";
+option go_package = "github.com/spaciba/sample_c2/api";
 
-
-package sample_c2;
+package api;
 
 service Controller {
-    
+    rpc CreateListener (CreateListenerRequest) returns (CreateListenerReply) {}
+    rpc DeleteListener (DeleteListenerRequest) returns (DeleteListenerReply) {}
+}
+
+message CreateListenerRequest {
+    string listener_type = 1;
+    string listener_address = 2;
+}
+
+message CreateListenerReply {
+    string listener_id = 1;
+    string message = 2;
+    int32 error_code = 3;
+}
+
+message DeleteListenerRequest {
+    string listener_id = 1;
+}
+
+message DeleteListenerReply {
+    string message = 2;
+    int32 error_code = 3;
 }
